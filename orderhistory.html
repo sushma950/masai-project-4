@@ -1,0 +1,83 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <style>
+        table.gridtable {
+            font-family: verdana, arial, sans-serif;
+            font-size: 11px;
+            color: #333333;
+            border-width: 1px;
+            border-color: #666666;
+            border-collapse: collapse;
+        }
+
+        table.gridtable th {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #dedede;
+        }
+
+        table.gridtable td {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="content"></div>
+
+    <script type="text/javascript">
+        //var prices
+        
+        var i=3,prices = JSON.parse(localStorage.getItem("menulist"))
+            console.log(prices[0])
+        var MOUNTAINS = [
+            { "name":"pasta", "quantity": "1", "price": "250"},
+            { "name": "pizza", "quantity": "1", "price": "150" },
+            { "name": "garlicbread", "quantity": "1", "price": "150" }
+        ];
+
+
+        function buildTable(data) {
+            var table = document.createElement("table");
+            table.className = "gridtable";
+            var thead = document.createElement("thead");
+            var tbody = document.createElement("tbody");
+            var headRow = document.createElement("tr");
+            ["Name", "Quantity", "Price"].forEach(function (el) {
+                var th = document.createElement("th");
+                th.appendChild(document.createTextNode(el));
+                headRow.appendChild(th);
+            });
+            thead.appendChild(headRow);
+            table.appendChild(thead);
+            data.forEach(function (el) {
+                var tr = document.createElement("tr");
+                for (var o in el) {
+                    var td = document.createElement("td");
+                    td.appendChild(document.createTextNode(el[o]))
+                    tr.appendChild(td);
+                }
+                tbody.appendChild(tr);
+            });
+            table.appendChild(tbody);
+            return table;
+        }
+        window.onload = function () {
+           
+            document.getElementById("content").appendChild(buildTable(MOUNTAINS));
+        }
+
+    </script>
+</body>
+
+</html>
