@@ -1,0 +1,117 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    </head>
+    <body>
+        <button id="btn"></button>
+       <div id="res">
+           <!-- <select id="update-selection"></select> -->
+           
+           
+       </div>
+       <button id="cart">checkout</button>
+
+        <script type="text/javascript"> 
+        var carr=[{a:"pasta",b:"https://images.unsplash.com/photo-1560788784-66eda82b5eb7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60",c:"250"},
+        {a:"pizza",b:"https://images.unsplash.com/photo-1585238342024-78d387f4a707?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60",c:"350"},
+        {a:"garlicBread",b:"https://images.unsplash.com/photo-1593527270723-834c53a3fed4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60",c:"150"}]
+
+
+        var arr=["https://images.unsplash.com/photo-1560788784-66eda82b5eb7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60",
+        "https://images.unsplash.com/photo-1585238342024-78d387f4a707?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60",
+        "https://images.unsplash.com/photo-1593527270723-834c53a3fed4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60"]
+       var costarr={}
+        window.addEventListener("load",()=>{
+            for(var i=0;i<carr.length;i++)
+           handle(i)
+            var res =document.getElementById("res")
+            res.addEventListener("click",()=>{
+                var ele=event.target
+                if(ele.name=="add"){
+                   var amount = ele.previousElementSibling
+                  console.log(amount.textContent)
+                 var itemcost =amount.textContent
+
+                 var itemname = ele.nextElementSibling
+                  console.log(itemname.textContent)
+                 var item =itemname.textContent
+                 //saveprices(userinfo)
+                 console.log(i)
+                 costarr[i++]=itemcost
+                 costarr[i++]=item
+                 console.log(costarr)
+                 
+                 var x="italian"
+                 var url = new URLSearchParams()
+                 url.append("q",x)
+                 
+       
+                 //renderoptions()
+                }
+               
+
+                var cart = document.getElementById("cart")
+                cart.addEventListener("click",saveprices)
+            })
+            function saveprices(){
+                console.log(event.target)
+                savedata(costarr)
+                window.location.href = `orderhistory.html`
+
+            }
+
+                  function savedata(carr)
+{
+  var menuall = JSON.parse(localStorage.getItem("menuitems")) || []
+  menuall.push(carr)
+  localStorage.setItem("menulist",JSON.stringify(menuall))
+  //console.log(alldata)
+
+}
+              
+
+        })
+
+        function handle(i)
+        {
+          var div =document.createElement("div")
+
+          const img = document.createElement("img")
+    img.src =  carr[i].b
+    img.style.height="200px"
+    img.style.width="300px"
+    console.log(img.src)
+    
+          var p1= document.createElement("p")
+          p1.textContent= carr[i].c
+          var b=document.createElement("button")
+          b.textContent="add"
+          b.name="add"
+          var p= document.createElement("p")
+          p.textContent= carr[i].a
+        div.append(img,p1,b,p)
+          var res=document.getElementById("res")
+          res.append(div)
+        
+        }
+
+        // function renderoptions() {
+        //     event.preventDefault()
+        //     console.log(arr[0])
+        //     arr.push("d")
+        //     const select = document.getElementById("update-selection")
+        //     const frag = document.createDocumentFragment()
+        //     arr.forEach(item => {
+        //         let option = document.createElement("option")
+        //         option.textContent = item
+        //         frag.append(option)
+        //     })
+        //     select.append(frag)
+        // }
+       
+        //localStorage.setItem("a",1)
+        </script>
+    </body>
+</html>

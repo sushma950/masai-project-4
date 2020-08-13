@@ -1,0 +1,104 @@
+<html>
+
+<head>
+    <style>
+        .box {
+            border: 1px dotted red;
+        }
+    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+
+
+    <div id="target"></div>
+
+    <div class="container-fluid">
+        <div class="row">
+
+
+            <div class="col-8 ">
+
+                <div class="card mb-3 " style="max-width: 800px;">
+                    <div class="row no-gutters">
+                        <div class="col-md-4 " id="d1">
+                            <img id="i1"> </div>
+                        <div class="col-md-8">
+
+                        </div>
+                    </div>
+                   
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<script>
+    var arr1 = [
+        { link: "menu.html", name: "DOMINOS", image: "https://images.unsplash.com/photo-1493770348161-369560ae357d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60" },
+        { link: "menu.html", name: "PIZZACORNER", image: "https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60" },
+        { link: "menu.html", name: "PIZZAHUT", image: "https://images.unsplash.com/photo-1478145046317-39f10e56b5e9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60" }]
+    window.addEventListener("load", () => {
+
+        savedata(arr1)
+        var user = JSON.parse(localStorage.getItem("all"))
+        var target = document.getElementById("target")
+        for (var i = 0; i < 3; i++)
+            renderToDom(user[0][i], target)
+        // display(i)
+    })
+    function savedata(arr1) {
+        var alldata = JSON.parse(localStorage.getItem("sdf")) || []
+        alldata.push(arr1)
+        localStorage.setItem("all", JSON.stringify(alldata))
+    }
+    function display(i) {
+        var url = new URLSearchParams(window.location.search)
+        var param = url.get('q')
+        console.log(param)
+        var user = JSON.parse(localStorage.getItem("all"))
+        console.log(user[0][i])
+        // var i =document.createElement("img")
+        var n = document.getElementById("i1")
+        n.style.height = "100px"
+        var ne = document.getElementById("d1")
+        console.log(user[0][i].name)
+        //i.src="https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60"
+        n.src = user[0][i].image
+        // var body =document.querySelector("body")
+        // div.textContent=user.username+" "+user.date
+        // a.href=user[0].img
+        ne.append(n)
+
+    }
+
+    function renderToDom(user, target) {
+        const div = document.createElement("div")
+
+        const h3 = document.createElement("h3")
+        h3.textContent = user.name
+        const anchor = document.createElement('a');
+        anchor.href = user.link;
+        anchor.innerText = 'menu';
+        // console.log(user.name)
+        const img = document.createElement("img")
+        img.src = user.image
+        img.style.height = "200px"
+        img.style.width = "300px"
+        //img.alt = item.alt
+
+        div.append(h3, anchor, img)
+        target.append(div)
+    }
+</script>
+
+</html>
