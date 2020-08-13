@@ -1,11 +1,14 @@
 
 <html>
     <head>
-
+<title>Combined Sales</title>
     </head>
     <body>
+        
         <canvas id="chart"></canvas>
-
+        <div class="text-center">
+            <a class="btn btn-success" href="chart2.html" role="button">Next</a>
+          </div>
        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script> 
        
         <script type="text/javascript">
@@ -15,19 +18,14 @@
             chart = new Chart( ctx,{
                 type:"bar",
                 data:{
-                    labels:["Paradise","Bawarchi","Tajkrishna","Pistahouse","Pizzahouse","pizzacorner"],
+                    labels:["Paradise","Bawarchi","Tajkrishna","Pistahouse","Pizzahouse","Absolute Barbeques",
+                    "Indian Cuisine","Urvasi","Rasoi","Aviyal Veg"],
                     datasets:[
                         {
                         label:"sales",
-                        data:[100000,45000,60000,80000,65000,70000,80000],
-                        backgroundColor:[
-                            createcolor(255),
-                            createcolor(255),
-                            createcolor(255),
-                            createcolor(255),
-                            createcolor(255),
-                            createcolor(255)
-                        ]
+                        data:[500000,450000,600000,800000,650000,700000,80000,950000,550000,75000,88000],
+                        backgroundColor:createColor(255)
+                           
                     },
                   
                     
@@ -38,12 +36,12 @@
         })
 
         function random(num){
-            return Math.floor(Math.random()*num) 
-        }
+      return Math.floor(Math.random() * num)
+  }
+function createColor(num){
+return `rgba(${random(255)},${random(255)},${random(255)},${Math.random()})`
+}
 
-        function createcolor(num) {
-            return `rgba(${random(255)},${random(255)},${random(255)},${random(255)})`
-        }
         </script>
     </body>
 </html>
