@@ -1,0 +1,56 @@
+<!-- Problem
+
+https://i.imgur.com/Jixup1m.png
+
+create the following data set with chart.js
+hardcode the data, you dont need other functionalities -->
+
+<html>
+    <head>
+
+    </head>
+    <body>
+        <canvas id="chart"></canvas>
+
+       <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script> 
+       
+        <script type="text/javascript">
+        var ctx,chart
+        window.addEventListener("load",function(){
+            ctx = document.getElementById("chart")
+            chart = new Chart( ctx,{
+                type:"line",
+                data:{
+                    labels:["MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY","SUNDAY"],
+                    datasets:[
+                        {
+                        label:"sales",
+                        data:[10000,45000,60000,18000,45000,90000,70000],
+                        backgroundColor:[
+                            createcolor(255),
+                            createcolor(255),
+                            createcolor(255),
+                            createcolor(255),
+                            createcolor(255),
+                            createcolor(255),
+                            createcolor(255)
+                        ]
+                    },
+                  
+                    
+                ],
+                borderWidth:1
+                }
+            })
+        })
+
+        function random(num){
+            return Math.floor(Math.random()*num) 
+        }
+
+        function createcolor(num) {
+            return `rgba(${random(255)},${random(255)},${random(255)},${random(255)})`
+        }
+        </script>
+    </body>
+</html>
