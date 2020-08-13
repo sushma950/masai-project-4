@@ -7,50 +7,51 @@ hardcode the data, you dont need other functionalities -->
 
 <html>
     <head>
-
     </head>
     <body>
         <canvas id="chart"></canvas>
-
+        <div class="text-center">
+            <a class="btn btn-success" href="chart2.html" role="button">Next</a>
+          </div>
        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script> 
-       
         <script type="text/javascript">
-        var ctx,chart
-        window.addEventListener("load",function(){
-            ctx = document.getElementById("chart")
-            chart = new Chart( ctx,{
-                type:"line",
-                data:{
-                    labels:["MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY","SUNDAY"],
-                    datasets:[
-                        {
-                        label:"sales",
-                        data:[10000,45000,60000,18000,45000,90000,70000],
-                        backgroundColor:[
-                            createcolor(255),
-                            createcolor(255),
-                            createcolor(255),
-                            createcolor(255),
-                            createcolor(255),
-                            createcolor(255),
-                            createcolor(255)
-                        ]
-                    },
-                  
-                    
-                ],
-                borderWidth:1
+        let ctx,chart
+   const options={
+       type:"bar",
+       data:{
+        labels:['Day1','Day2','Day3','Day4','Day2','Day5','Day6','Day7',
+        'Day8','Day9','Day10','Day11','Day12','Day13','Day14','Day15'],
+        datasets:[{
+            label:'sales',
+            data:[100000,200000,60000,70000,90000,250000,500000,750000,75000,
+            1000000,475000,88000,360000,680000,990000,450000],
+            backgroundColor:'rgb(255,100,50)'
+        }
+       
+    ]
+       },
+       options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    suggestedMin: 15000,
+                    suggestedMax: 1200000,
+                    stepSize: 100000
                 }
-            })
-        })
-
-        function random(num){
-            return Math.floor(Math.random()*num) 
+            }]
         }
+    }
+       
 
-        function createcolor(num) {
-            return `rgba(${random(255)},${random(255)},${random(255)},${random(255)})`
-        }
+   }
+   window.addEventListener('load',function(){
+       ctx=document.getElementById('chart')
+       chart=new Chart(ctx,options)
+
+       
+   })
+  
+           
         </script>
     </body>
 </html>
